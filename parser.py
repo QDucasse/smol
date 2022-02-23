@@ -106,7 +106,7 @@ class Parser():
             Unary, {[ "/" | "+" | "-" | "*" ], Expression}
         '''
         expression_node = ExpressionNode()
-        expression_node.statement = self.parse_unary()
+        expression_node.lhs = self.parse_unary()
         # To check the type of the expression, we look for a ';' after the first variable or number
         if not self.peek().tag == 'TERMINATOR':
             # Binary operation so operator and another expression
