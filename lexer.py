@@ -27,7 +27,7 @@ regexExpressions = [
 ]
 
 
-class Lexem(object):
+class Lexem:
     '''
     Our token definition:
     lexem (tag and value) + position in the program raw text
@@ -54,7 +54,7 @@ class Lexem(object):
 
 class Lexer:
     '''
-    Creates a lexem list from raw program text
+    Component in charge of the transformation of raw data to lexems.
     '''
 
     def __init__(self):
@@ -96,5 +96,4 @@ class Lexer:
                     print(line[position:])
                     sys.exit(1)
 
-        print("Lexer: analysis successful!")
         return self.lexems

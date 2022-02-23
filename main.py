@@ -5,13 +5,9 @@ Created on Wed Feb 16 17:55:21 2022
 """
 
 import sys
-import os
-
 from pprint import pprint
 
-from ast import *
-from lexer import *
-from parser import *
+from compiler import Compiler
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -24,15 +20,15 @@ if __name__ == '__main__':
       print('Error: test file {} does not exist'.format(testFileName))
       sys.exit()
 
+     # The compiler will:
+     #  - lex the raw data through the lexer and generate lexems
+     #  - parse the lexems through the parser and generate an AST
+     #  - visit the AST through a visitor and generate an output
 
-    # Lex the contents
-    lexer = Lexer()
-    lexems = lexer.lex(file_data)
+    compiler = Compiler()
+    ast = compiler.compile(file_data)
 
-    # Parse the lexems
-    parser = Parser()
-    ast = parser.parse(lexems)
-
-    # Print the nodes
+    # Pretty print the instance vars from the program node but as it
+    # is not recursive it would be more interesting to inspect it
+    # through a debugger
     pprint(vars(ast))
-    pprint(vars(ast.assignments[2]))

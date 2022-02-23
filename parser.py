@@ -73,7 +73,6 @@ class Parser():
         self.lexems = lexems
         self.remove_comments()
         ast = self.parse_program()
-        print('Parser: processing complete!')
         return ast
 
 

@@ -7,7 +7,7 @@ Created on Wed Feb 16 17:55:31 2022
 from pprint import pformat
 
 from abc import ABC
-
+import re
 
 class Node(ABC):
     '''
@@ -15,7 +15,7 @@ class Node(ABC):
     It is defined as an abstract class so it should not be instanciated but rather herited from.
     '''
 
-    def accept(self, visitor, args):
+    def accept(self, visitor):
         '''
         Accepts the upcoming visitor with its arguments.
 
@@ -25,7 +25,7 @@ class Node(ABC):
             Visitor of the ast.
 
         args: objects
-            Arguments that need to be passed to the visit___ method cast on the
+            Arguments that need to be passed to the visit method cast on the
             visitor.
 
         Note
@@ -34,11 +34,12 @@ class Node(ABC):
         (subnode) to cast the correct visitor visit method.
         '''
         # Formatting the name
-        className  = self.__class__.__name__
-        methodName = getattr(visitor, "visit" + className)
-        # Casting the visit<className> method on the visitor
-        methodName(args)
-        
+        class_name_camel_case = self.__class__.__name__
+        class_name_snake_case = re.sub(r'(?<!^)(?=[A-Z])', '_', class_name_camel_case).lower()
+        method_name = getattr(visitor, "visit_" + class_name_snake_case)
+        # Casting the visit<class_name> method on the visitor
+        method_name(visitor)
+
 
 class ProgramNode(Node):
     '''
