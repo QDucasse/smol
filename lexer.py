@@ -43,7 +43,7 @@ class Lexem:
     position: integer tuple
         Tuple to point out the lexem in the input file (line number, position)
     '''
-    def __init__(self, tag, value, position):
+    def __init__(self, tag=None, value=None, position=None):
         self.tag      = tag
         self.value    = value
         self.position = position
@@ -57,8 +57,8 @@ class Lexer:
     Component in charge of the transformation of raw data to lexems.
     '''
 
-    def __init__(self):
-        self.lexems = []
+    def __init__(self, lexems=None):
+        self.lexems = lexems if lexems is not None else []
 
     def lex(self, inputText):
         '''
