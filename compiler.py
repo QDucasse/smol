@@ -14,12 +14,12 @@ class Compiler:
     The compiler is the main class that includes all components and performs the
     operation that goes from raw data to the final product
     '''
-    def __init__(self):
+    def __init__(self, lexer=None, parser=None, visitor=None):
         self.lexer = Lexer()
         self.parser = Parser()
         self.visitor = Visitor()
 
-    def compile(self, file_data):
+    def compile(self, file_data=None):
         '''
         Launches all the passes one after the other
         '''
