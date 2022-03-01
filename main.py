@@ -5,7 +5,6 @@ Created on Wed Feb 16 17:55:21 2022
 """
 
 import sys
-from pprint import pprint
 
 from compiler import Compiler
 
@@ -31,4 +30,4 @@ if __name__ == '__main__':
     # Pretty print the instance vars from the program node but as it
     # is not recursive it would be more interesting to inspect it
     # through a debugger
-    pprint(vars(ast))
+    print(ast)
