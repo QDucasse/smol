@@ -151,5 +151,5 @@ class Parser():
         '''
         number_node = NumberNode()
         token = self.expect('NUMBER')
-        number_node.name = token.value
+        number_node.number = token.value
         return number_node
