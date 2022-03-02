@@ -56,6 +56,12 @@ class ProgramNode(Node):
     def __str__(self):
         return "Program (\n" + "\n".join([str(assignment) for assignment in self.assignments]) + "\n)"
 
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.visit_program(self)
+    #
+
 class AssignmentNode(Node):
     '''
     AST Node for an Assignment, consists of an identifier (lhs) and an expression (rhs).
@@ -66,6 +72,12 @@ class AssignmentNode(Node):
 
     def __str__(self):
         return "Assignment ( {} = {} )".format(str(self.identifier), str(self.expression))
+
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.visit_assignment(self)
+    #
 
 class ExpressionNode(Node):
     '''
@@ -88,6 +100,12 @@ class ExpressionNode(Node):
             return "Expression( {} )".format(str(self.lhs))
         return "Expression( {} {} {} )".format(str(self.lhs), RED + ExpressionNode.OPERATOR_STR[self.operator.tag] + ENDC, str(self.rhs))
 
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.visit_expression(self)
+    #
+
 class UnaryNode(Node):
     '''
     AST Node for an Unary expression, consists of an identifier or a number.
@@ -97,6 +115,12 @@ class UnaryNode(Node):
 
     def __str__(self):
         return "Unary ( {} )".format(str(self.value))
+
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.unary(self)
+    #
 
 class IdentifierNode(Node):
     '''
@@ -108,6 +132,12 @@ class IdentifierNode(Node):
     def __str__(self):
         return "Identifier {}".format(GREEN + self.value + ENDC)
 
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.visit_identifier(self)
+    #
+
 class NumberNode(Node):
     '''
     AST Node for a Number, it consists of the number itself.
@@ -117,3 +147,9 @@ class NumberNode(Node):
 
     def __str__(self):
         return "Number {}".format(GREEN + str(self.value) + ENDC)
+
+    # The accept method is defined through meta -programmation in the super class but would look like:
+    #
+    # def accept(self, visitor):
+    #       return visitor.visit_visit_number(self)
+    #
