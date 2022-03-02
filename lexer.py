@@ -22,8 +22,8 @@ regexExpressions = [
     (r'\/', 'DIVISION'),
 
     # Identifiers & Integers
-    (r'[a-zA-Z]\w*', 'VARIABLE'),
-    (r'\d+',         'NUMBER'),
+    (r'[a-zA-Z]\w*', 'IDENTIFIER'),
+    (r'-?\d+',       'NUMBER'),
 ]
 
 
