@@ -10,7 +10,7 @@ from compiler import Compiler
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Erro: Please provide a file to process.")
+        print("Error: Please provide a file to process.")
     file_name = sys.argv[1]
     try:
       with open(file_name, 'r') as file:
