@@ -7,10 +7,10 @@ Its grammar is presented in a flavor of EBNF in `toy.ebnf`:
 ```ebnf
 (* Toy language grammar consisting only of assignment *)
 Program = {Assignment};
-Assignment = Variable, '=', Expression, ';';
+Assignment = Identifier, '=', Expression, ';';
 Expression = Unary, {[ "/" | "+" | "-" | "*" ], Expression};
-Unary = Variable | Number;
-Variable = Character, { Character | Digit };
+Unary = Identifier | Number;
+Identifier = Character, { Character | Digit };
 Number = [ "-" ], Digit, { Digit } ;
 Character = "A" | "B" | "C" | "D" | "E" | "F" | "G"
             | "H" | "I" | "J" | "K" | "L" | "M" | "N"

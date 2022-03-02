@@ -58,14 +58,14 @@ class ProgramNode(Node):
 
 class AssignmentNode(Node):
     '''
-    AST Node for an Assignment, consists of a variable (lhs) and an expression (rhs).
+    AST Node for an Assignment, consists of an identifier (lhs) and an expression (rhs).
     '''
-    def __init__(self, variable=None, expression=None):
-        self.variable = variable
+    def __init__(self, identifier=None, expression=None):
+        self.identifier = identifier
         self.expression = expression
 
     def __str__(self):
-        return "Assignment ( {} = {} )".format(str(self.variable), str(self.expression))
+        return "Assignment ( {} = {} )".format(str(self.identifier), str(self.expression))
 
 class ExpressionNode(Node):
     '''
@@ -90,7 +90,7 @@ class ExpressionNode(Node):
 
 class UnaryNode(Node):
     '''
-    AST Node for an Unary expression, consists of a variable or a number.
+    AST Node for an Unary expression, consists of an identifier or a number.
     '''
     def __init__(self, value=None):
         self.value = value
@@ -98,22 +98,22 @@ class UnaryNode(Node):
     def __str__(self):
         return "Unary ( {} )".format(str(self.value))
 
-class VariableNode(Node):
+class IdentifierNode(Node):
     '''
-    AST Node for a Variable, consists of a name.
+    AST Node for an Identifier, consists of a name.
     '''
-    def __init__(self, name=None):
-        self.name = name
+    def __init__(self, value=None):
+        self.value = value
 
     def __str__(self):
-        return "Variable {}".format(GREEN + self.name + ENDC)
+        return "Identifier {}".format(GREEN + self.value + ENDC)
 
 class NumberNode(Node):
     '''
     AST Node for a Number, it consists of the number itself.
     '''
-    def __init__(self, number=None):
-        self.number = number
+    def __init__(self, value=None):
+        self.value = value
 
     def __str__(self):
-        return "Number {}".format(GREEN + str(self.number) + ENDC)
+        return "Number {}".format(GREEN + str(self.value) + ENDC)

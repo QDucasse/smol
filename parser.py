@@ -90,10 +90,10 @@ class Parser():
     def parse_assignment(self):
         '''
         Parses an assignment that looks like:
-            Variable, '=', Expression ';'
+            Identifier, '=', Expression ';'
         '''
         assignment_node = AssignmentNode()
-        assignment_node.variable = self.parse_variable()
+        assignment_node.identifier = self.parse_identifier()
         self.expect('ASSIGN')
         assignment_node.expression = self.parse_expression()
         self.expect('TERMINATOR')
@@ -107,7 +107,7 @@ class Parser():
         '''
         expression_node = ExpressionNode()
         expression_node.lhs = self.parse_unary()
-        # To check the type of the expression, we look for a ';' after the first variable or number
+        # To check the type of the expression, we look for a ';' after the first identifier or number
         if not self.peek().tag == 'TERMINATOR':
             # Binary operation so operator and another expression
             if self.peek().tag in ['ADDITION', 'SUBTRACTION', 'MULTIPLICATION', 'DIVISION']:
@@ -121,35 +121,39 @@ class Parser():
     def parse_unary(self):
         '''
         Parses an unary that looks like:
-            Variable | Number
+            Identifier | Number
         '''
         unary_node = UnaryNode()
-        if self.peek().tag == 'VARIABLE':
-            unary_node.value = self.parse_variable()
+        if self.peek().tag == 'IDENTIFIER':
+            unary_node.value = self.parse_identifier()
         elif self.peek().tag == 'NUMBER':
             unary_node.value = self.parse_number()
         else:
-            self.error("Unary is either variable or number")
+            self.error("Unary should be an identifier or a number")
         return unary_node
 
 
-    def parse_variable(self):
+    def parse_identifier(self):
         '''
-        Parses a variable that looks like:
+        Parses an identifier that looks like:
             Character, {Character | Digit}
+
+        Note that the 'parsing' is done through the associated regex in the lexer
         '''
-        variable_node = VariableNode()
-        token = self.expect('VARIABLE')
-        variable_node.name = token.value
-        return variable_node
+        identifier_node = IdentifierNode()
+        token = self.expect('IDENTIFIER')
+        identifier_node.value = token.value
+        return identifier_node
 
 
     def parse_number(self):
         '''
         Parses a number that looks like:
             Digit, {Digit}
+
+        Note that the 'parsing' is done through the associated regex in the lexer
         '''
         number_node = NumberNode()
         token = self.expect('NUMBER')
-        number_node.number = token.value
+        number_node.value = token.value
         return number_node
