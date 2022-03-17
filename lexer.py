@@ -22,7 +22,7 @@ regexExpressions = [
     (r'\/', 'DIVISION'),
 
     # Identifiers & Integers
-    (r'[a-zA-Z]\w*', 'IDENTIFIER'),
+    (r'[a-z]\w*', 'IDENTIFIER'), # nom_planete1
     (r'-?\d+',       'NUMBER'),
 ]
 

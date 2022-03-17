@@ -1,7 +1,7 @@
 (* Toy language grammar consisting only of assignment *)
 Program = {Assignment};
 Assignment = Identifier, '=', Expression, ';';
-Expression = Unary, {[ "/" | "+" | "-" | "*" ], Expression};
+Expression = Unary, { ( "/" | "+" | "-" | "*" ) , Expression};
 Unary = Identifier | Number;
 Identifier = Character, { Character | Digit };
 Number = [ "-" ], Digit, { Digit } ;
