@@ -6,7 +6,7 @@ Created on Wed Feb 16 17:55:57 2022
 
 import sys
 
-from ast import *
+from smol.ast import *
 
 
 class Parser():
@@ -22,7 +22,7 @@ class Parser():
         '''
         Error template.
         '''
-        print('ERROR at {}:'.format(str(self.peek().position)), message)
+        print(f'ERROR at {str(self.peek().position)}: {message}')
         sys.exit(1)
 
     def peek(self, n=1):
@@ -34,7 +34,7 @@ class Parser():
             return self.lexems[n - 1]
         except IndexError:
             self.error('No more lexems left.')
-
+    
 
     def expect(self, tag):
         '''

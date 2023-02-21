@@ -6,7 +6,7 @@ Created on Wed Feb 16 17:55:21 2022
 
 import sys
 
-from compiler import Compiler
+from smol.compiler import Compiler
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

@@ -4,10 +4,10 @@ Created on Wed Feb 16 17:57:03 2022
 @author: Quentin Ducasse
 """
 
-from ast import *
-from lexer import Lexer
-from parser import Parser
-from visitor import Visitor
+from smol.ast import *
+from smol.lexer import Lexer
+from smol.parser import Parser
+from smol.visitor import Visitor
 
 class Compiler:
     '''
@@ -28,7 +28,7 @@ class Compiler:
         print("Lexer: analysis successful!")
         # Parsing phase and transformation to AST
         ast = self.parser.parse(lexems)
-        print("Lexer: analysis successful!")
+        print("Parser: parsing successful!")
         # Different visitor phases (no effect for now)
         ast_pass_1 = self.visitor.visit(ast)
         print("Visitor: visit successful!")
